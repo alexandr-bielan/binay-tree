@@ -1,0 +1,59 @@
+package com.example.demo;
+
+public class Node {
+    private Node left, right;
+    private Integer value;
+
+    private static int sum = 0;
+
+    public Node(Node left, Node right, Integer value) {
+        this.left = left;
+        this.right = right;
+        this.value = value;
+    }
+
+    public Node getLeft() {
+        return left;
+    }
+
+    public Node getRight() {
+        return right;
+    }
+
+    public Integer getValue() {
+        return value;
+    }
+
+    public Boolean hasLeft() {
+        return left != null;
+    }
+
+    public Boolean hasRight() {
+        return right != null;
+    }
+
+    public static int getSum(Node head) {
+        sum += head.getValue();
+        if (head.hasLeft()) {
+            getSum(head.getLeft());
+        }
+
+        if (head.hasRight()) {
+            getSum(head.getRight());
+        }
+
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Node node6 = new Node(null, null, 11);
+        Node node5 = new Node(null, null, 8);
+        Node node4 = new Node(node5, node6, 7);
+        Node node3 = new Node(node4, null, 2);
+        Node node2 = new Node(null, node3, 4);
+        Node node1 = new Node(null, null, 3);
+        Node node = new Node(node1, node2, 5);
+
+        System.out.println(getSum(node));
+    }
+}
